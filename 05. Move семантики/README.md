@@ -76,6 +76,8 @@ public:
 };
 ```
 
+## [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision.html)
+
 ## Задачи
 ## 1. задача
 Допълнете задачата от предишния път като добавите Move семантики за класа `Set`.
