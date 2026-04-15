@@ -109,10 +109,10 @@ public:
         return *this;
     }
 
-    A& operator++(int) {         // постфиксен оператор
-        int tmp = this->x; 
+    A operator++(int) {         // постфиксен оператор
+        A tmp = *this; 
         this->x += 1;
-        return this->x;
+        return tmp;
     }
 };
 ```
