@@ -1,0 +1,89 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+//class A {
+//private:
+//	char* name;
+//public: 
+//	A(const char* name) {
+//		size_t len = strlen(name) + 1;
+//		this->name = new char[len];
+//		strcpy(this->name, name);
+//	}
+//	A(const A& other) {
+//		size_t len = strlen(other.name) + 1;
+//		this->name = new char[len];
+//		strcpy(this->name, other.name);
+//	}
+//	A& operator=(const A& other) {
+//		if (this != &other) {
+//			delete[] name;
+//			size_t len = strlen(other.name) + 1;
+//			this->name = new char[len];
+//			strcpy(this->name, other.name);
+//		} 
+//		return *this;
+//	}
+//	A(A&& other) noexcept {
+//		name = other.name;
+//
+//		other.name = nullptr;
+//	}
+//	A& operator=(A&& other) noexcept
+//	{
+//		if (this != &other) {
+//			delete[] name;
+//			name = other.name;
+//			other.name = nullptr;
+//		}
+//		return *this;
+//	}
+//	~A() {
+//		delete[] name;
+//	}
+//
+//	void print() const {
+//		std::cout << name << std::endl;
+//	}
+//};
+//
+//class B : public A {
+//public: 
+//	B() : A("Name") {}
+//};
+
+class A {
+public:
+    A() { cout << "A()\n"; }
+    A(A&) { cout << "A(A&)\n"; }
+    A& operator=(A&) {
+        cout << "op=(A&)\n";
+        return *this;
+    }
+};
+
+class B : public A {
+public:
+    B() { cout << "B()\n"; }
+    B(B&) { cout << "B(B&)\n"; }
+    B& operator=(B&) {
+        cout << "op=(B&)\n";
+        return *this;
+    }
+};
+
+void f(A b) { cout << "f(A)\n"; }
+
+int main()
+{
+    B d;
+    B copy = d;
+    A b = d;
+    A& ref = d;
+    B arr[2];
+    f(d);
+    d = d;
+    ref = d;
+	return 0;
+}
